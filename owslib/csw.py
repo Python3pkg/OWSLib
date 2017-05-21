@@ -15,14 +15,14 @@ import inspect
 import warnings
 import six
 try:
-    from StringIO import StringIO as BytesIO  # Python 2
+    from io import StringIO as BytesIO  # Python 2
 except ImportError:
     from io import BytesIO  # Python 3
 import random
 try:                    # Python 3
     from urllib.parse import urlencode
 except ImportError:     # Python 2
-    from urllib import urlencode
+    from urllib.parse import urlencode
 
 from owslib.util import OrderedDict
 

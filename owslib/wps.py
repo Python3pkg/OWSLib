@@ -96,7 +96,7 @@ from owslib.namespaces import Namespaces
 try:                    # Python 3
     from urllib.parse import urlparse
 except ImportError:     # Python 2
-    from urlparse import urlparse
+    from urllib.parse import urlparse
 
 # namespace definition
 n = Namespaces()
@@ -144,7 +144,7 @@ def is_literaldata(val):
     if not is_str:
         # on python 2.x we need to check unicode
         try:
-            is_str = isinstance(val, unicode)
+            is_str = isinstance(val, str)
         except:
             # unicode is not available on python 3.x
             is_str = False

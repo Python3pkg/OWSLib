@@ -6,7 +6,7 @@ from datetime import datetime
 try:                    # Python 3
     from urllib.parse import urlencode
 except ImportError:     # Python 2
-    from urllib import urlencode
+    from urllib.parse import urlencode
 from owslib import ows
 from owslib.crs import Crs
 from owslib.fes import FilterCapabilities
@@ -35,7 +35,7 @@ class SensorObservationService_1_0_0(object):
 
     def __getitem__(self,id):
         ''' check contents dictionary to allow dict like access to service observational offerings'''
-        if id in self.__getattribute__('contents').keys():
+        if id in list(self.__getattribute__('contents').keys()):
             return self.__getattribute__('contents')[id]
         else:
             raise KeyError("No Observational Offering with id: %s" % id)

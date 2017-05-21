@@ -12,7 +12,7 @@
 from __future__ import (absolute_import, division, print_function)
 
 try:
-    from urllib import urlencode
+    from urllib.parse import urlencode
 except ImportError:
     from urllib.parse import urlencode
 from owslib.etree import etree
@@ -59,7 +59,7 @@ class WCSBase(object):
 
     def getDescribeCoverage(self, identifier):
         ''' returns a describe coverage document - checks the internal cache to see if it has been fetched before '''
-        if identifier not in self._describeCoverage.keys():
+        if identifier not in list(self._describeCoverage.keys()):
             reader = DescribeCoverageReader(self.version, identifier, self.cookies)
             self._describeCoverage[identifier] = reader.read(self.url)
         return self._describeCoverage[identifier]

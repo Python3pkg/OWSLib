@@ -5,7 +5,7 @@ from owslib.etree import etree
 try:
     from urllib.parse import urlencode  # Python 3
 except ImportError:
-    from urllib import urlencode  # Python 2
+    from urllib.parse import urlencode  # Python 2
 from owslib import ows
 from owslib.crs import Crs
 from owslib.fes import FilterCapabilities200
@@ -39,7 +39,7 @@ class SensorObservationService_2_0_0(object):
 
     def __getitem__(self, id):
         ''' check contents dictionary to allow dict like access to service observational offerings'''
-        if id in self.__getattribute__('contents').keys():
+        if id in list(self.__getattribute__('contents').keys()):
             return self.__getattribute__('contents')[id]
         else:
             raise KeyError("No Observational Offering with id: %s" % id)

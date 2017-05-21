@@ -39,8 +39,8 @@ try:                    # Python 3
     from urllib.parse import (urlencode, urlparse, urlunparse, parse_qs,
                               ParseResult)
 except ImportError:      # Python 2
-    from urllib import urlencode
-    from urlparse import urlparse, urlunparse, parse_qs, ParseResult
+    from urllib.parse import urlencode
+    from urllib.parse import urlparse, urlunparse, parse_qs, ParseResult
 from .etree import etree
 from .util import openURL, testXMLValue, getXMLInteger
 from .fgdc import Metadata
@@ -751,11 +751,11 @@ class ContentMetadata:
             legendURL = s.find(_STYLE_LEGEND_URL)
             if legendURL is not None:
                 style['legend'] = legendURL.attrib[_HREF_TAG]
-                if 'width' in legendURL.attrib.keys():
+                if 'width' in list(legendURL.attrib.keys()):
                     style['width'] = legendURL.attrib.get('width')
-                if 'height' in legendURL.attrib.keys():
+                if 'height' in list(legendURL.attrib.keys()):
                     style['height'] = legendURL.attrib.get('height')
-                if 'format' in legendURL.attrib.keys():
+                if 'format' in list(legendURL.attrib.keys()):
                     style['format'] = legendURL.attrib.get('format')
 
             keywords = [f.text for f in s.findall(

@@ -4,7 +4,7 @@ import cgi
 try:                    # Python 3
     from urllib.parse import urlencode
 except ImportError:     # Python 2
-    from urllib import urlencode
+    from urllib.parse import urlencode
 
 from owslib.etree import etree
 from owslib.util import openURL, strip_bom

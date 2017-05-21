@@ -10,10 +10,10 @@
 
 # get a list of entries for a given code list dictionary
 
-from __future__ import absolute_import
-from __future__ import print_function
+
+
 import sys
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 
 from owslib.etree import etree
 from owslib.iso import CodelistCatalogue

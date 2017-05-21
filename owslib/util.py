@@ -18,11 +18,11 @@ from owslib.namespaces import Namespaces
 try:                    # Python 3
     from urllib.parse import urlsplit, urlencode
 except ImportError:     # Python 2
-    from urlparse import urlsplit
-    from urllib import urlencode
+    from urllib.parse import urlsplit
+    from urllib.parse import urlencode
 
 try:
-    from StringIO import StringIO  # Python 2
+    from io import StringIO  # Python 2
     BytesIO = StringIO
 except ImportError:
     from io import StringIO, BytesIO  # Python 3

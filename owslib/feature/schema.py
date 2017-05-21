@@ -12,7 +12,7 @@ generating layer schema description compatible with `fiona`
 import cgi, sys
 from owslib.util import openURL
 try:
-    from urllib import urlencode
+    from urllib.parse import urlencode
 except ImportError:
     from urllib.parse import urlencode
 from owslib.etree import etree

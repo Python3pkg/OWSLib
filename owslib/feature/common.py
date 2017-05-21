@@ -3,7 +3,7 @@ from owslib.etree import etree
 from owslib.util import openURL
 
 try:
-    from urllib import urlencode
+    from urllib.parse import urlencode
 except ImportError:
     from urllib.parse import urlencode
 

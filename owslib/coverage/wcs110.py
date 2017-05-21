@@ -16,7 +16,7 @@ from __future__ import (absolute_import, division, print_function)
 from .wcsBase import WCSBase, WCSCapabilitiesReader, ServiceException
 from owslib.util import openURL, testXMLValue
 try:
-    from urllib import urlencode
+    from urllib.parse import urlencode
 except ImportError:
     from urllib.parse import urlencode
 from owslib.etree import etree
@@ -49,7 +49,7 @@ class WebCoverageService_1_1_0(WCSBase):
     
     def __getitem__(self, name):
         ''' check contents dictionary to allow dict like access to service layers'''
-        if name in self.__getattribute__('contents').keys():
+        if name in list(self.__getattribute__('contents').keys()):
             return self.__getattribute__('contents')[name]
         else:
             raise KeyError("No content named %s" % name)

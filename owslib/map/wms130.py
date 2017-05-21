@@ -18,7 +18,7 @@ from __future__ import (absolute_import, division, print_function)
 try:                    # Python 3
     from urllib.parse import urlencode
 except ImportError:     # Python 2
-    from urllib import urlencode
+    from urllib.parse import urlencode
 
 import warnings
 import six
@@ -538,7 +538,7 @@ class ContentMetadata(object):
             # some servers found in the wild use a single SRS
             # tag containing a whitespace separated list of SRIDs
             # instead of several SRS tags. hence the inner loop
-            for srslist in map(lambda x: x.text, elem.findall(nspath('CRS', WMS_NAMESPACE))):
+            for srslist in [x.text for x in elem.findall(nspath('CRS', WMS_NAMESPACE))]:
                 if srslist:
                     for srs in srslist.split():
                         self.crsOptions.append(srs)
@@ -577,9 +577,9 @@ class ContentMetadata(object):
 
             lgd = s.find(nspath('LegendURL', WMS_NAMESPACE))
             if lgd is not None:
-                if 'width' in lgd.attrib.keys():
+                if 'width' in list(lgd.attrib.keys()):
                     style['legend_width'] = lgd.attrib.get('width')
-                if 'height' in lgd.attrib.keys():
+                if 'height' in list(lgd.attrib.keys()):
                     style['legend_height'] = lgd.attrib.get('height')
 
                 lgd_format = lgd.find(nspath('Format', WMS_NAMESPACE))

@@ -58,7 +58,7 @@ except ImportError:
         try:
             # Python < 2.5 with ElementTree installed
             import elementtree.ElementTree as etree
-            ParseError = StandardError      # i can't find a ParseError related item in elementtree docs!
+            ParseError = Exception      # i can't find a ParseError related item in elementtree docs!
             ElementType = etree.Element
         except ImportError:
             raise RuntimeError('You need either lxml or ElementTree to use OWSLib!')
